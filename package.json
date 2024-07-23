@@ -1,0 +1,19 @@
+{
+  "name": "recommendmeabook",
+  "version": "1.0.0",
+  "description": "project to share book knowledge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ernest52/recommendMeABook.git"
+  },
+  "author": "Ernest Zielonka",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ernest52/recommendMeABook/issues"
+  },
+  "homepage": "https://github.com/ernest52/recommendMeABook#readme"
+}
