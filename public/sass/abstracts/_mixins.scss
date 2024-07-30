@@ -1,0 +1,28 @@
+@mixin respond($breakpoint) {
+  @if ($breakpoint==large) {
+    @media only screen and (max-width: $large) {
+      //large 75em
+      @content;
+    }
+  }
+  @if ($breakpoint==medium) {
+    @media only screen and (max-width: $medium) {
+      @content;
+    }
+  }
+  @if ($breakpoint==small) {
+    @media only screen and (max-width: $small) {
+      @content;
+    }
+  }
+  @if ($breakpoint==x-small) {
+    @media only screen and (max-width: $x-small) {
+      @content;
+    }
+  }
+  @if ($breakpoint==noneHover) {
+    @media only screen and (hover: none) {
+      @content;
+    }
+  }
+}

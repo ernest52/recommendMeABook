@@ -1,0 +1,61 @@
+.nbForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid $color__white;
+  width: 80%;
+  margin: 1rem auto;
+  padding: 2rem;
+  &__input {
+    width: 80%;
+    background-color: $color__pink--dark;
+    padding: 1rem;
+    border: 2px solid $color__white;
+    outline: none;
+    color: $color__white;
+  }
+  textarea.nbForm__input {
+    min-width: 80%;
+    max-width: 80%;
+    min-height: 30vh;
+    max-height: 30vh;
+  }
+  #rating.nbForm__input {
+    width: 30%;
+    font-size: 2rem;
+  }
+  &__label {
+    align-self: flex-start;
+    // background-color: red;
+    width: 80%;
+    margin: 0 auto;
+    padding: 1rem;
+    color: $color__white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    span {
+      font-size: 2rem;
+      margin-left: 1rem;
+    }
+  }
+  // &__select {
+  //   // background-color: red;
+  //   border: 2px solid $color__white;
+  //   background-color: $color__pink--dark;
+  //   color: $color__white;
+  //   &:focus {
+  //     outline: none;
+  //   }
+  // }
+  &__btn {
+    align-self: flex-end;
+  }
+}
+.error {
+  font-size: 2rem;
+  color: $color__red;
+  border: 2px solid $color__white;
+  padding: 0.5rem;
+  margin: 1rem;
+}

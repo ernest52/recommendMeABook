@@ -1,0 +1,120 @@
+<%-layout("../public/boilerplates/mainBoilerplate") %>
+<form action="/addBook" method="post" class="nbForm" id="nbForm">
+  <%if(oldNbFormData){ %>
+  <input
+    type="text"
+    id="oldData"
+    value="<%=oldNbFormData %>"
+    style="display: none"
+  />
+  <% } %>
+  <label for="title" class="nbForm__label">title</label>
+  <input
+    id="title"
+    class="nbForm__input"
+    type="text"
+    maxlength="100"
+    name="title"
+    required
+  />
+  <label for="author" class="nbForm__label">author</label>
+  <input
+    id="author"
+    class="nbForm__input"
+    type="text"
+    maxlength="50"
+    name="author"
+    required
+  />
+  <label for="written" class="nbForm__label">data of written</label>
+  <input id="written" name="written" type="date" class="nbForm__input" />
+  <label for="genres" class="nbForm__label">Choose genres of book: </label>
+  <select name="genres" class="nbForm__input" id="genres" required>
+    <option value="default">Select Value..</option>
+    <%menu.forEach(el=>{ %>
+    <option value="<%=el%>"><%=el%></option>
+    <%})%>
+  </select>
+  <label for="description" class="nbForm__label"
+    >Write some thoughts about this book:</label
+  >
+  <textarea
+    name="description"
+    id="description"
+    maxlength="500"
+    class="nbForm__input"
+    required
+  ></textarea>
+  <label class="nbForm__label"
+    >rating:
+    <input
+      id="rating"
+      type="number"
+      min="1"
+      max="10"
+      name="rating"
+      required
+      class="nbForm__input"
+    />
+    <span>/10</span>
+  </label>
+
+  <label for="isbn" class="nbForm__label">isbn:</label>
+  <input
+    id="isbn"
+    name="isbn"
+    type="text"
+    maxlength="13"
+    required
+    class="nbForm__input"
+  />
+  <button class="nbForm__btn btn">Add new One</button>
+</form>
+
+<script>
+  const oldDataInput = document.getElementById("oldData");
+  const defaultData = {
+    title: "bbbbb",
+    author: "bbbbb",
+    written: "2024-07-04",
+    genres: "adventure",
+    description: "dddddddddddddddddddddddddddddddd",
+    rating: "2",
+    isbn: "1234567891",
+  };
+  const key = `<%=error?.key%>`;
+  const message = `<%-error?.message%>`;
+  const form = document.getElementById("nbForm");
+
+  console.log("key: ", key);
+  console.log("message: ", message);
+  if (key && message) {
+    const input = document.getElementById(key);
+    const error = document.createElement("p");
+    error.classList.add("error");
+
+    error.textContent = message + "!";
+
+    if (input) {
+      const parent = input.parentNode;
+      parent.insertBefore(error, input.nextSibling);
+    } else {
+      form.append(error);
+    }
+  }
+  if (oldDataInput) {
+    const oldDataJSON = oldDataInput.value;
+    const oldData = JSON.parse(oldDataJSON);
+    for (let key in oldData) {
+      // console.log(`oldData[${key}]--> ${oldData[key]}`);
+      const input = document.getElementById(key);
+      input && (input.value = oldData[key]);
+    }
+  } else {
+    for (let key in defaultData) {
+      console.log(`defaultData[${key}]--> ${defaultData[key]}`);
+      const input = document.getElementById(key);
+      input && (input.value = defaultData[key]);
+    }
+  }
+</script>

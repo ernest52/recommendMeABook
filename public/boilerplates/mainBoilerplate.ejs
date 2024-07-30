@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%-include("../partials/header")%>
+  <body>
+    <div class="wrapper">
+      <nav class="topNav">topNav</nav>
+      <nav class="sideNav">
+        <%menu.forEach(el=>{%>
+        <a href="/books/<%=el%>" class="sideNav__link"><%= el%></a>
+        <%}) %>
+        <a href="/newBook" class="sideNav__link">Add new Book</a>
+      </nav>
+      <div class="content"><%-body%></div>
+      <footer class="footer">Footer</footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+:root {
+  --font__size--main: 1rem;
+}
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; //10px
+  @include respond(medium) {
+    font-size: 50%;
+  }
+  @include respond(small) {
+    font-size: 40%;
+  }
+}
+
+.wrapper {
+  display: grid;
+
+  background-color: $color__white;
+  padding: 1rem;
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: [topNav-start]max-content[topNav-end main-start]max-content[main-end footer-start]min-content[footer-end];
+}

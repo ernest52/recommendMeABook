@@ -1,0 +1,57 @@
+.book {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: [title-start] max-content[title-end main-start]max-content[main-end description-start]max-content [description-end options-start] max-content[options-end];
+  // background-color: pink;
+  padding: 2rem;
+  max-width: 80%;
+  margin: 2rem auto;
+  text-transform: capitalize;
+  color: $color__white;
+  border: 2px solid $color__pink;
+  & > * {
+    border: 2px solid $color__pink--dark;
+    padding: 1rem;
+  }
+  &__title {
+    grid-column: 1/-1;
+    grid-row-start: title-start;
+    grid-row-end: title-end;
+  }
+  &__cover {
+    grid-column: 1/2;
+    grid-row: main-start/main-end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & img {
+      height: 50%;
+    }
+  }
+  &__wrapper {
+    // background-color: gold;
+    grid-column: 2/3;
+    grid-row: main-start/main-end;
+  }
+  &__details {
+    font-size: 1.5rem;
+  }
+  &__description {
+    grid-column: 1/-1;
+    grid-row: description-start/description-end;
+  }
+  &__options {
+    // background-color: green;
+
+    grid-column: 1/-1;
+    grid-row: options-start/options-end;
+  }
+  &__form {
+    display: inline-block;
+  }
+}
+.info {
+  color: $color__white;
+  font-size: 2rem;
+  padding: 1rem;
+}

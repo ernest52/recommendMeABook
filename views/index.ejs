@@ -1,0 +1,38 @@
+<%- layout("../public/boilerplates/mainBoilerplate") %> <% if(books &&
+books.length){%> <% books.forEach(book=>{ %> <% const created=new
+Date(book.written);%>
+<div class="book">
+  <p class="book__title"><%=book.title%></p>
+  <div class="book__cover">
+    <img src="<%=book.src %>" alt="poster of <%=book.title%>" />
+  </div>
+
+  <div class="book__wrapper">
+    <div class="book__details">
+      <p class="details__author">Author : <%=book.author %></p>
+
+      <p class="details__written">Created : <%=created.getFullYear() %></p>
+      <p class="details__genres">Type: <%=book.genres%></p>
+      <p class="details__rating">rating: <%=book.rating%> /10</p>
+    </div>
+  </div>
+  <div class="book__description"><%=book.description %></div>
+  <div class="book__options">
+    <form
+      action="/books/<%=book.id%>?genres=<%=book.genres%>&_method=DELETE"
+      method="post"
+      class="book__form"
+    >
+      <button class="btn">delete book</button>
+    </form>
+
+    <button class="btn">update info</button>
+  </div>
+</div>
+
+<%})%> <%} else{%>
+<p class="info">
+  No books to show. Create an account or sign in and add your own book's list to
+  change it.
+</p>
+<%} %>

@@ -1,0 +1,13 @@
+.btn {
+  // align-self: flex-end;
+  margin: 2rem 0;
+  cursor: pointer;
+  border: 2px solid $color__pink--dark;
+  background-color: transparent;
+  color: $color__white;
+  padding: 1rem;
+  &:hover {
+    color: $color__pink;
+    border-color: $color__white;
+  }
+}
