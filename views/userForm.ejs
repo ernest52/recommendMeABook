@@ -1,0 +1,69 @@
+<%-layout("../public/boilerplates/mainBoilerplate") %>
+<form
+  action="<%=func==='register'?'/register':'/logIn' %>"
+  method="post"
+  class="nbForm"
+  id="nbForm"
+>
+  <%if(oldNbFormData){ %>
+  <input
+    type="text"
+    id="oldData"
+    value="<%=oldNbFormData %>"
+    style="display: none"
+  />
+  <% } %>
+  <label for="username" class="nbForm__label">username</label>
+  <input
+    id="username"
+    class="nbForm__input"
+    type="text"
+    name="username"
+    required
+  />
+  <label for="email" class="nbForm__label">email</label>
+  <input id="email" class="nbForm__input" type="email" name="email" required />
+
+  <label for="password" class="nbForm__label">password:</label>
+  <input
+    id="password"
+    name="password"
+    type="password"
+    required
+    class="nbForm__input"
+  />
+  <button class="nbForm__btn btn">
+    <%=func==='register'?'Sign Up':'Sign In' %>
+  </button>
+</form>
+<script>
+  const oldDataInput = document.getElementById("oldData");
+
+  const key = `<%=error?.key%>`;
+  const message = `<%-error?.message%>`;
+  const form = document.getElementById("nbForm");
+
+  if (key && message) {
+    const input = document.getElementById(key);
+    const error = document.createElement("p");
+    error.classList.add("error");
+
+    error.textContent = message + "!";
+
+    if (input) {
+      const parent = input.parentNode;
+      parent.insertBefore(error, input.nextSibling);
+    } else {
+      form.append(error);
+    }
+  }
+  if (oldDataInput) {
+    const oldDataJSON = oldDataInput.value;
+    const oldData = JSON.parse(oldDataJSON);
+    for (let key in oldData) {
+      // console.log(`oldData[${key}]--> ${oldData[key]}`);
+      const input = document.getElementById(key);
+      input && (input.value = oldData[key]);
+    }
+  }
+</script>

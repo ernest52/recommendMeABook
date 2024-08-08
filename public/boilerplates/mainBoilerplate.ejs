@@ -3,14 +3,19 @@
   <%-include("../partials/header")%>
   <body>
     <div class="wrapper">
-      <nav class="topNav">topNav</nav>
-      <nav class="sideNav">
-        <%menu.forEach(el=>{%>
-        <a href="/books/<%=el%>" class="sideNav__link"><%= el%></a>
-        <%}) %>
-        <a href="/newBook" class="sideNav__link">Add new Book</a>
-      </nav>
-      <div class="content"><%-body%></div>
+      <!-- <nav class="topNav">topNav</nav> -->
+      <%-include("../partials/topNav") %> <%-include("../partials/sideNav") %>
+      <div class="content">
+        <% if(success){%>
+        <div class="info">
+          <p class="success"><%=success %></p>
+        </div>
+        <%} %> <% if(error && typeof error=="string"){%>
+        <div class="info">
+          <p class="error"><%=error %></p>
+        </div>
+        <%} %> <%-body%>
+      </div>
       <footer class="footer">Footer</footer>
     </div>
   </body>

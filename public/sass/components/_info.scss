@@ -1,0 +1,17 @@
+.info {
+  width: 80%;
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: $color__pink--dark;
+  text-transform: capitalize;
+  .success {
+    color: $color__green--dark;
+    border: 2px solid $color__white;
+    padding: 2rem;
+  }
+  .error {
+    padding: 2rem;
+    border: 2px solid $color__white;
+    color: $color__red;
+  }
+}
