@@ -8,6 +8,7 @@ import methodOverride from "method-override";
 import bcrypt from "bcrypt";
 import passport from "passport";
 import { Strategy } from "passport-local";
+import GoogleStrategy from "passport-google-oauth20";
 import {
   localsRep,
   asyncWrap,
@@ -56,9 +57,9 @@ app.use(localsRep);
 app.engine("ejs", engine);
 
 app.get("/", async (req, res) => {
-  if (req?.user) {
-    console.log("req.user: ", req.user);
-  }
+  // if (req?.user) {
+  //   console.log("req.user: ", req.user);
+  // }
   const { rows } = await db.query(
     "SELECT * FROM books ORDER BY rating DESC LIMIT $1",
     [5]
@@ -70,6 +71,23 @@ app.get("/", async (req, res) => {
 
   res.render("index", { books: rows });
 });
+app.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+  })
+);
+app.get(
+  "/auth/google/userPanel",
+  passport.authenticate("google", {
+    failureRedirect: "/logIn",
+    // successRedirect: "/",
+  }),
+  (req, res) => {
+    req.session.success = "Successfully logged In";
+    res.redirect("/");
+  }
+);
 app.get(
   "/newBook",
   asyncWrap(async (req, res) => {
@@ -213,6 +231,41 @@ passport.use(
       return cb(err);
     }
   })
+);
+passport.use(
+  "google",
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: process.env.GOOGLE_CALLBACK_URL,
+      userProfileURL: process.env.GOOGLE_USER_PROFILE_URL,
+    },
+    async (accessToken, refreshToken, profile, cb) => {
+      // console.log("profile: ", profile);
+      // console.log("profile._jon.email: ", profile._json.email);
+      // console.log("OBJECT.KEYS[profile]", Object.keys(profile));
+      const result = await db.query("SELECT * FROM users WHERE email=$1", [
+        profile._json.email,
+      ]);
+      if (!result.rows.length) {
+        try {
+          const { rows } = await db.query(
+            "INSERT INTO users (username,email,password) VALUES($1,$2,$3) RETURNING*",
+            [profile.displayName, profile._json.email, "google"]
+          );
+          const newUser = rows[0];
+          cb(null, newUser);
+        } catch (err) {
+          cb(err, null);
+        }
+      } else {
+        // console.log("user: ");
+
+        cb(null, result.rows[0]);
+      }
+    }
+  )
 );
 passport.serializeUser((user, cb) => {
   cb(null, user);
