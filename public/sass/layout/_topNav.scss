@@ -3,4 +3,16 @@
   grid-row: topNav-start/topNav-end;
   background-color: $color__green;
   height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  &__link {
+    @extend %link;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+  &__button {
+    @extend %button;
+    margin-right: 1.5rem;
+  }
 }

@@ -73,15 +73,9 @@
 
 <script>
   const oldDataInput = document.getElementById("oldData");
-  const defaultData = {
-    title: "bbbbb",
-    author: "bbbbb",
-    written: "2024-07-04",
-    genres: "adventure",
-    description: "dddddddddddddddddddddddddddddddd",
-    rating: "2",
-    isbn: "1234567891",
-  };
+
+  const data = JSON.parse(`<%-defData %>`);
+
   const key = `<%=error?.key%>`;
   const message = `<%-error?.message%>`;
   const form = document.getElementById("nbForm");
@@ -111,10 +105,9 @@
       input && (input.value = oldData[key]);
     }
   } else {
-    for (let key in defaultData) {
-      console.log(`defaultData[${key}]--> ${defaultData[key]}`);
+    for (let key in data) {
       const input = document.getElementById(key);
-      input && (input.value = defaultData[key]);
+      input && (input.value = data[key]);
     }
   }
 </script>
