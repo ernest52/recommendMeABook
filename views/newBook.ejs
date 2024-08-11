@@ -1,5 +1,5 @@
 <%-layout("../public/boilerplates/mainBoilerplate") %>
-<form action="/addBook" method="post" class="nbForm" id="nbForm">
+<form action="/books/new" method="post" class="nbForm" id="nbForm">
   <%if(oldNbFormData){ %>
   <input
     type="text"
@@ -74,14 +74,10 @@
 <script>
   const oldDataInput = document.getElementById("oldData");
 
-  const data = JSON.parse(`<%-defData %>`);
-
   const key = `<%=error?.key%>`;
   const message = `<%-error?.message%>`;
   const form = document.getElementById("nbForm");
 
-  console.log("key: ", key);
-  console.log("message: ", message);
   if (key && message) {
     const input = document.getElementById(key);
     const error = document.createElement("p");
@@ -103,11 +99,6 @@
       // console.log(`oldData[${key}]--> ${oldData[key]}`);
       const input = document.getElementById(key);
       input && (input.value = oldData[key]);
-    }
-  } else {
-    for (let key in data) {
-      const input = document.getElementById(key);
-      input && (input.value = data[key]);
     }
   }
 </script>

@@ -1,9 +1,10 @@
 %link {
+  text-transform: capitalize;
+  color: $color__white;
   &:link {
     text-decoration: none;
   }
-  text-transform: capitalize;
-  color: $color__white;
+
   &:hover {
     color: darken($color__white, 20%);
     transform: scale(1.025);

@@ -1,10 +1,10 @@
 <nav class="topNav">
   <%if(!isAuth){ %>
   <a href="/auth/google" class="topNav__link">authorize with google </a>
-  <a href="/logIn" class="topNav__link">sign in</a>
-  <a href="/register" class="topNav__link">sign up</a>
+  <a href="/user/logIn" class="topNav__link">sign in</a>
+  <a href="/user/register" class="topNav__link">sign up</a>
   <%}else{ %>
-  <form action="/logOut" method="post">
+  <form action="/user/logOut" method="post">
     <button class="topNav__button">log Out</button>
   </form>
   <% }%>

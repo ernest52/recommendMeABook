@@ -41,7 +41,7 @@ export default async (req, res, next) => {
       : errObj;
     req.session.error = errObj;
     req.session.oldNbFormData = JSON.stringify(req.body);
-    res.redirect("/newBook");
+    res.redirect("/books/new");
   } else {
     next();
   }

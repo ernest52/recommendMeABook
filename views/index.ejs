@@ -1,4 +1,4 @@
-<%- layout("../public/boilerplates/mainBoilerplate") %> <% if(books &&
+<%- layout("../public/boilerplates/mainBoilerplate.ejs") %> <% if(books &&
 books.length){%> <% books.forEach(book=>{ %> <% const created=new
 Date(book.written);%>
 <div class="book">
@@ -17,6 +17,7 @@ Date(book.written);%>
     </div>
   </div>
   <div class="book__description"><%=book.description %></div>
+  <%if(isAuth){ %>
   <div class="book__options">
     <form
       action="/books/<%=book.id%>?genres=<%=book.genres%>&_method=DELETE"
@@ -27,7 +28,9 @@ Date(book.written);%>
     </form>
 
     <button class="btn">update info</button>
+    <a href="/user/favs" class="btn">update info</a>
   </div>
+  <%} %>
 </div>
 
 <%})%> <%} else{%>

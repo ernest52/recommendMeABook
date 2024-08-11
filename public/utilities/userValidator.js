@@ -13,7 +13,7 @@ export default async (req, res, next) => {
     };
     req.session.error = errObj;
     req.session.oldNbFormData = JSON.stringify(req.body);
-    res.redirect("/register");
+    res.redirect("/user/register");
   } else {
     next();
   }
