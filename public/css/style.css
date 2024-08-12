@@ -228,6 +228,10 @@ html {
   background-color: transparent;
   color: #fff;
   padding: 1rem;
+  text-transform: capitalize;
+}
+.btn:link {
+  text-decoration: none;
 }
 .btn:hover {
   color: pink;

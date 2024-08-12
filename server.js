@@ -11,7 +11,12 @@ import { Strategy } from "passport-local";
 import GoogleStrategy from "passport-google-oauth20";
 import { localsRep, errorApp, errorHandler } from "./public/utilities/index.js";
 import db from "./pgConnection/db.js";
-import { userRouter, BooksRouter, GoogleAuthRouter } from "./routes/index.js";
+import {
+  userRouter,
+  BooksRouter,
+  GoogleAuthRouter,
+  selectedUserRouter,
+} from "./routes/index.js";
 
 if (process.env.NODE_ENV !== "production") {
   dotenv.config();
@@ -68,6 +73,8 @@ app.get("/", async (req, res) => {
   res.render("index", { books });
 });
 app.use("/user", userRouter);
+app.use("/user/:id", selectedUserRouter);
+
 app.use("/books", BooksRouter);
 app.use("/auth/google", GoogleAuthRouter);
 

@@ -1,10 +1,10 @@
 <%-layout("../public/boilerplates/mainBoilerplate") %>
-<form action="/books/new" method="post" class="nbForm" id="nbForm">
+<form <%if(func==="new"){%>action="/books/new"<%}else{%>action="/books/<%=id%>?_method=PATCH"<%} %> method="post" class="nbForm" id="nbForm">
   <%if(oldNbFormData){ %>
   <input
     type="text"
     id="oldData"
-    value="<%=oldNbFormData %>"
+    value="<%=oldNbFormData%>"
     style="display: none"
   />
   <% } %>
@@ -68,7 +68,7 @@
     required
     class="nbForm__input"
   />
-  <button class="nbForm__btn btn">Add new One</button>
+  <button class="nbForm__btn btn"><%=func=="new"?"create":"update"%></button>
 </form>
 
 <script>

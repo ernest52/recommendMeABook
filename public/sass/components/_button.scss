@@ -6,6 +6,10 @@
   background-color: transparent;
   color: $color__white;
   padding: 1rem;
+  text-transform: capitalize;
+  &:link {
+    text-decoration: none;
+  }
   &:hover {
     color: $color__pink;
     border-color: $color__white;

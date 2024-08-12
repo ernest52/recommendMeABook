@@ -3,7 +3,10 @@ const localsRep = (req, res, next) => {
   res.locals.menu = menu;
   res.locals.success = null;
   res.locals.isAuth = req.isAuthenticated();
-
+  if (req.isAuthenticated()) {
+    res.locals.user = req.user;
+    // console.log("res.locals.user: ", res.locals.user);
+  }
   res.locals.error = null;
   res.locals.oldNbFormData = null;
 

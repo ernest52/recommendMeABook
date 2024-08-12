@@ -2,15 +2,15 @@ import express from "express";
 import passport from "passport";
 const GoogleAuthRouter = express.Router();
 GoogleAuthRouter.get(
-  "/auth/google",
+  "/",
   passport.authenticate("google", {
     scope: ["profile", "email"],
   })
 );
 GoogleAuthRouter.get(
-  "/auth/google/userPanel",
+  "/userPanel",
   passport.authenticate("google", {
-    failureRedirect: "/logIn",
+    failureRedirect: "/user/logIn",
     // successRedirect: "/",
   }),
   (req, res) => {

@@ -27,8 +27,16 @@ Date(book.written);%>
       <button class="btn">delete book</button>
     </form>
 
-    <button class="btn">update info</button>
-    <a href="/user/favs" class="btn">update info</a>
+    <a href="/books/<%=book.id %>" class="btn">update book</a>
+    <form action="/user/<%=user.id%>" method="post" class="book__form">
+      <input
+        type="text"
+        style="display: none"
+        name="book"
+        value="<%=book.id %>"
+      />
+      <button class="btn">Add to Favs</button>
+    </form>
   </div>
   <%} %>
 </div>
