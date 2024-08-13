@@ -5,8 +5,8 @@ const addNewBook = asyncWrap(async (req, res) => {
     req.body;
   const src = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg?default=false`;
 
-  await db.query(
-    "INSERT INTO books (title,author,written,genres ,src ,description ,rating,isbn) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *",
+  const { rows } = await db.query(
+    "INSERT INTO books (title,author,written,genres ,src ,description ,rating,isbn,creator_id) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id",
     [
       title.trim(),
       author.trim(),
@@ -16,9 +16,12 @@ const addNewBook = asyncWrap(async (req, res) => {
       description.trim(),
       rating,
       isbn.trim(),
+      req?.user.id,
     ]
   );
-
+  req.session.userBooks.push(rows[0].id);
+  // console.log("created book: ", rows[0]);
+  // console.log("req.sessuon.userBooks: ", req.session.userBooks);
   res.redirect("/");
 });
 
@@ -62,20 +65,13 @@ const updateBook = asyncWrap(async (req, res) => {
 });
 const deleteBook = asyncWrap(async (req, res) => {
   const { id } = req.params;
-  // const { genres } = req.query;
-  // console.log(`id: ${id}, genres: ${genres}`);
+  const { genres } = req.query;
+
   const { rows } = await db.query("DELETE FROM books WHERE id=$1 RETURNING *", [
     id,
   ]);
   const deletedBook = rows[0];
-  console.log("deletedBook: ", deletedBook);
-  const { title, author, written, genres, src, description, rating, isbn } =
-    deletedBook;
-  const responseFromInseting = await db.query(
-    "INSERT INTO books (title,author,written,genres ,src ,description ,rating,isbn,id) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING *",
-    [title, author, written, genres, src, description, rating, isbn, id]
-  );
-  console.log("responseFromInseting: ", responseFromInseting);
+
   req.session.success = "book removed";
   res.redirect(`/books/genres/${genres}`);
 });

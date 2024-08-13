@@ -1,7 +1,11 @@
 <nav class="sideNav">
-  <%menu.forEach(el=>{%>
+  <%if(sideNav==="main"){ %> <%menu.forEach(el=>{%>
   <a href="/books/genres/<%=el%>" class="sideNav__link"><%= el%></a>
-  <%}) %> <%if(isAuth){%>
+  <%}) %>
   <a href="/books/new" class="sideNav__link">Add new Book</a>
-  <%} %>
+  <% }else{%>
+  <a href="/" class="sideNav__link">home</a>
+  <a href="#" class="sideNav__link">My books</a>
+  <a href="#" class="sideNav__link">My favs</a>
+  <% }%>
 </nav>

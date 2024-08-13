@@ -10,6 +10,8 @@ import db from "../pgConnection/db.js";
 const BooksRouter = express.Router();
 BooksRouter.route("/new")
   .get((req, res) => {
+    // const { rows: books } = await db.query("SELECT * FROM books");
+    // res.locals.oldNbFormData = JSON.stringify(books[0]);
     res.locals.func = "new";
     res.render("newBook");
   })

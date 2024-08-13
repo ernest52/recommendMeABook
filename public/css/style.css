@@ -1,6 +1,8 @@
 .sideNav__link, .topNav__link, .topNav__button {
   text-transform: capitalize;
   color: #fff;
+  font-size: 1.5rem;
+  margin-right: 1.5rem;
 }
 .sideNav__link:link, .topNav__link:link, .topNav__button:link {
   text-decoration: none;
@@ -11,7 +13,6 @@
 }
 
 .topNav__button {
-  font-size: 1.5rem;
   border: none;
   cursor: pointer;
   background-color: transparent;
@@ -65,14 +66,6 @@ html {
   align-items: center;
   justify-content: flex-end;
 }
-.topNav__link {
-  font-size: 1.5rem;
-  margin-right: 1rem;
-}
-.topNav__button {
-  margin-right: 1.5rem;
-}
-
 .sideNav {
   grid-column: 1/2;
   grid-row: main-start/main-end;

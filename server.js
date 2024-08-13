@@ -50,9 +50,14 @@ app.use(localsRep);
 app.engine("ejs", engine);
 
 app.get("/", async (req, res) => {
-  // if (req?.user) {
-  //   console.log("req.user: ", req.user);
-  // }
+  res.locals.sideNav = req.session?.sideNav || "main";
+  // console.log("req.session.sideNav: ", req.session?.sideNav);
+  if (req.session?.sideNav) {
+    delete req.session.sideNav;
+  }
+
+  // console.log("res.locals.sideNav: ", res.locals.sideNav);
+
   let books;
   if (req.session.books) {
     books = req.session.books;

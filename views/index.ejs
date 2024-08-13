@@ -1,6 +1,6 @@
-<%- layout("../public/boilerplates/mainBoilerplate.ejs") %> <% if(books &&
-books.length){%> <% books.forEach(book=>{ %> <% const created=new
-Date(book.written);%>
+<%- layout("../public/boilerplates/mainBoilerplate.ejs") %>
+<%if(sideNav==="main"){ %> <% if(books && books.length){%> <%
+books.forEach(book=>{ %> <% const created=new Date(book.written);%>
 <div class="book">
   <p class="book__title"><%=book.title%></p>
   <div class="book__cover">
@@ -19,6 +19,7 @@ Date(book.written);%>
   <div class="book__description"><%=book.description %></div>
   <%if(isAuth){ %>
   <div class="book__options">
+    <%if(userBooks.includes(book.id)){ %>
     <form
       action="/books/<%=book.id%>?genres=<%=book.genres%>&_method=DELETE"
       method="post"
@@ -26,9 +27,9 @@ Date(book.written);%>
     >
       <button class="btn">delete book</button>
     </form>
-
     <a href="/books/<%=book.id %>" class="btn">update book</a>
-    <form action="/user/<%=user.id%>" method="post" class="book__form">
+    <%} %> <% if(!userFavs.includes(book.id)){%>
+    <form action="/user/<%=user.id%>/favs" method="post" class="book__form">
       <input
         type="text"
         style="display: none"
@@ -37,6 +38,7 @@ Date(book.written);%>
       />
       <button class="btn">Add to Favs</button>
     </form>
+    <% }%>
   </div>
   <%} %>
 </div>
@@ -46,4 +48,4 @@ Date(book.written);%>
   No books to show. Create an account or sign in and add your own book's list to
   change it.
 </p>
-<%} %>
+<%} %> <% }else if(sideNav ==="userPanel"){%> Welcome from user Panel <% }%>
