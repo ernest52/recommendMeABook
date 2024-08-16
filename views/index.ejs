@@ -48,4 +48,5 @@ books.forEach(book=>{ %> <% const created=new Date(book.written);%>
   No books to show. Create an account or sign in and add your own book's list to
   change it.
 </p>
-<%} %> <% }else if(sideNav ==="userPanel"){%> Welcome from user Panel <% }%>
+<%} %> <% }else if(sideNav ==="userPanel"){%> <%if(books){ %> <%=books %>
+<%}else{ %>welcome to user Panel <%=user.username %> <% }%> <% }%>

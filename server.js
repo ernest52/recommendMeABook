@@ -58,11 +58,11 @@ app.get("/", async (req, res) => {
 
   // console.log("res.locals.sideNav: ", res.locals.sideNav);
 
-  let books;
+  let books = null;
   if (req.session.books) {
     books = req.session.books;
     delete req.session.books;
-  } else {
+  } else if (res.locals.sideNav === "main") {
     const { rows } = await db.query(
       "SELECT * FROM books ORDER BY rating DESC LIMIT $1",
       [5]

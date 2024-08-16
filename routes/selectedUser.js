@@ -24,4 +24,27 @@ selectedUserRouter.get("/myPanel", (req, res) => {
   req.session.sideNav = "userPanel";
   res.redirect("/");
 });
+selectedUserRouter.get("/books", async (req, res) => {
+  const { id } = req.params;
+  const { rows } = await db.query(
+    "SELECT title,author,written,genres,src,description FROM books WHERE creator_id=$1 ",
+    [id]
+  );
+  console.log("rows from books: ", rows);
+  req.session.books = rows;
+  req.session.sideNav = "userPanel";
+  res.redirect("/");
+});
+selectedUserRouter.get("/favs", async (req, res) => {
+  const { id } = req.params;
+  const { rows } = await db.query(
+    "SELECT title,author,written,genres,src,description FROM favs JOIN books ON  favs.book_id=books.id WHERE favs.user_id=$1",
+    [id]
+  );
+  console.log("rows from favs: ", rows);
+  req.session.books = rows;
+  req.session.sideNav = "userPanel";
+
+  res.redirect("/");
+});
 export default selectedUserRouter;

@@ -5,7 +5,7 @@
   <a href="/books/new" class="sideNav__link">Add new Book</a>
   <% }else{%>
   <a href="/" class="sideNav__link">home</a>
-  <a href="#" class="sideNav__link">My books</a>
-  <a href="#" class="sideNav__link">My favs</a>
+  <a href="/user/<%=user.id%>/books" class="sideNav__link">My books</a>
+  <a href="/user/<%=user.id%>/favs" class="sideNav__link">My favs</a>
   <% }%>
 </nav>
