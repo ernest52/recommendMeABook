@@ -51,12 +51,14 @@ app.engine("ejs", engine);
 
 app.get("/", async (req, res) => {
   res.locals.sideNav = req.session?.sideNav || "main";
+  res.locals.func = req.session?.func || "";
   // console.log("req.session.sideNav: ", req.session?.sideNav);
   if (req.session?.sideNav) {
     delete req.session.sideNav;
   }
-
-  // console.log("res.locals.sideNav: ", res.locals.sideNav);
+  if (req.session?.func) {
+    delete req.session.func;
+  }
 
   let books = null;
   if (req.session.books) {

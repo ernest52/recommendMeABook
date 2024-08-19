@@ -5,6 +5,7 @@ const localsRep = async (req, res, next) => {
   res.locals.success = null;
   res.locals.isAuth = req.isAuthenticated();
   res.locals.sideNav = "main";
+  res.locals.year = new Date().getFullYear();
 
   res.locals.books = null;
   if (req.isAuthenticated()) {

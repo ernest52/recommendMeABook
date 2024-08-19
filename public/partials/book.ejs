@@ -1,6 +1,4 @@
-<%- layout("../public/boilerplates/mainBoilerplate.ejs") %>
-<%if(sideNav==="main"){ %> <% if(books && books.length){%> <%
-books.forEach(book=>{ %> <% const created=new Date(book.written);%>
+<%books.forEach(book=>{ const created=new Date(book.written); %>
 <div class="book">
   <p class="book__title"><%=book.title%></p>
   <div class="book__cover">
@@ -13,13 +11,11 @@ books.forEach(book=>{ %> <% const created=new Date(book.written);%>
 
       <p class="details__written">Created : <%=created.getFullYear() %></p>
       <p class="details__genres">Type: <%=book.genres%></p>
-      <p class="details__rating">rating: <%=book.rating%> /10</p>
     </div>
   </div>
   <div class="book__description"><%=book.description %></div>
-  <%if(isAuth){ %>
   <div class="book__options">
-    <%if(userBooks.includes(book.id)){ %>
+    <%if(func==="books"){%>
     <form
       action="/books/<%=book.id%>?genres=<%=book.genres%>&_method=DELETE"
       method="post"
@@ -28,26 +24,21 @@ books.forEach(book=>{ %> <% const created=new Date(book.written);%>
       <button class="btn">delete book</button>
     </form>
     <a href="/books/<%=book.id %>" class="btn">update book</a>
-    <%} %> <% if(!userFavs.includes(book.id)){%>
-    <form action="/user/<%=user.id%>/favs" method="post" class="book__form">
+    <%}else if(func==="favs"){ %>
+    <form
+      action="/user/<%=user.id%>/favs?_method=DELETE"
+      method="post"
+      class="book__form"
+    >
       <input
         type="text"
         style="display: none"
         name="book"
         value="<%=book.id %>"
       />
-      <button class="btn">Add to Favs</button>
+      <button class="btn">remove from favs</button>
     </form>
-    <% }%>
+    <%} %>
   </div>
-  <%} %>
 </div>
-
-<%})%> <%} else{%>
-<p class="info">
-  No books to show. Create an account or sign in and add your own book's list to
-  change it.
-</p>
-<%} %> <% }else if(sideNav ==="userPanel"){%> <%if(books){ %>
-<%-include("../public/partials/book.ejs") %> <%}else{ %>welcome to user Panel
-<%=user.username %> <% }%> <% }%>
+<%}) %>

@@ -2,6 +2,10 @@
   grid-column: 1/2;
   grid-row: main-start/main-end;
   background-color: $color__orange--dark;
+  @include respond(medium) {
+    grid-column: 1/-1;
+    grid-row: side-nav-start/side-nav-end;
+  }
 
   &__link {
     @extend %link;

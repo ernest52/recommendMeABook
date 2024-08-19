@@ -61,13 +61,12 @@ html {
 
 html {
   font-size: var(--font__size--main);
-  color: #fff;
 }
 
 .topNav {
   grid-column: 1/-1;
   grid-row: topNav-start/topNav-end;
-  background-color: orangered;
+  background-color: green;
   height: 10vh;
   display: flex;
   align-items: center;
@@ -77,12 +76,6 @@ html {
   grid-column: 1/2;
   grid-row: main-start/main-end;
   background-color: orangered;
-}
-@media only screen and (max-width: 56.25em) {
-  .sideNav {
-    grid-column: 1/-1;
-    grid-row: side-nav-start/side-nav-end;
-  }
 }
 .sideNav__link {
   display: block;
@@ -99,21 +92,12 @@ html {
   background-color: orange;
   min-height: 100vh;
 }
-@media only screen and (max-width: 56.25em) {
-  .content {
-    grid-column: 1/-1;
-  }
-}
 
 .footer {
   grid-column: 1/-1;
   grid-row: footer-start/footer-end;
-  padding: 2rem;
-  background-color: orangered;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-items: center;
+  height: 10vh;
+  background-color: purple;
 }
 
 .nbForm {

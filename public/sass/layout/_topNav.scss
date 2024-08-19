@@ -1,7 +1,8 @@
 .topNav {
   grid-column: 1/-1;
   grid-row: topNav-start/topNav-end;
-  background-color: $color__green;
+  // background-color: $color__green;
+  background-color: $color__orange--dark;
   height: 10vh;
   display: flex;
   align-items: center;

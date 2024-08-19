@@ -3,4 +3,7 @@
   grid-row: main-start/main-end;
   background-color: $color__orange;
   min-height: 100vh;
+  @include respond(medium) {
+    grid-column: 1/-1;
+  }
 }

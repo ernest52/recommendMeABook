@@ -1,6 +1,10 @@
 .footer {
   grid-column: 1/-1;
   grid-row: footer-start/footer-end;
-  height: 10vh;
-  background-color: $color__purple;
+  padding: 2rem;
+  background-color: $color__orange--dark;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
 }

@@ -26,4 +26,8 @@ html {
   padding: 1rem;
   grid-template-columns: max-content 1fr;
   grid-template-rows: [topNav-start]max-content[topNav-end main-start]max-content[main-end footer-start]min-content[footer-end];
+  @include respond(medium) {
+    grid-template-columns: auto;
+    grid-template-rows: [topNav-start]max-content[topNav-end side-nav-start]max-content[side-nav-end main-start]max-content[main-end footer-start]min-content [footer-end];
+  }
 }
