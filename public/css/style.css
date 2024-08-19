@@ -52,15 +52,22 @@ html {
   grid-template-columns: max-content 1fr;
   grid-template-rows: [topNav-start] max-content [topNav-end main-start] max-content [main-end footer-start] min-content [footer-end];
 }
+@media only screen and (max-width: 56.25em) {
+  .wrapper {
+    grid-template-columns: auto;
+    grid-template-rows: [topNav-start] max-content [topNav-end side-nav-start] max-content [side-nav-end main-start] max-content [main-end footer-start] min-content [footer-end];
+  }
+}
 
 html {
   font-size: var(--font__size--main);
+  color: #fff;
 }
 
 .topNav {
   grid-column: 1/-1;
   grid-row: topNav-start/topNav-end;
-  background-color: green;
+  background-color: orangered;
   height: 10vh;
   display: flex;
   align-items: center;
@@ -70,6 +77,12 @@ html {
   grid-column: 1/2;
   grid-row: main-start/main-end;
   background-color: orangered;
+}
+@media only screen and (max-width: 56.25em) {
+  .sideNav {
+    grid-column: 1/-1;
+    grid-row: side-nav-start/side-nav-end;
+  }
 }
 .sideNav__link {
   display: block;
@@ -86,12 +99,21 @@ html {
   background-color: orange;
   min-height: 100vh;
 }
+@media only screen and (max-width: 56.25em) {
+  .content {
+    grid-column: 1/-1;
+  }
+}
 
 .footer {
   grid-column: 1/-1;
   grid-row: footer-start/footer-end;
-  height: 10vh;
-  background-color: purple;
+  padding: 2rem;
+  background-color: orangered;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
 }
 
 .nbForm {
